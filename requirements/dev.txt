@@ -18,3 +18,8 @@ flake8-isort==0.2
 flake8-quotes==0.1.1
 isort==4.2.2
 pep8-naming==0.3.3
+pep8
+pyflakes
+
+# Sanity - stuff I like to have around
+ipython

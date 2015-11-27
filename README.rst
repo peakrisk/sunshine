@@ -2,7 +2,13 @@
 Sunshine
 ===============================
 
-Rain or shine, weather data repository
+Rain or shine, weather data repository.
+
+A simple web application to store data from Personal Weather Stations.
+
+It provides a simple REST API.
+
+Also provides an API to allow querying and retrieval of data.
 
 
 Quickstart
@@ -37,6 +43,27 @@ Once you have installed your DBMS, run the following to create your app's databa
     python manage.py server
 
 
+pip install woes
+----------------
+
+I had trouble the *pip install* and got this error due to missing cffi
+headers I think:
+
+::
+
+    c/_cffi_backend.c:13:17: fatal error: ffi.h: No such file or directory
+
+
+On Ubuntu, I fixed this with: 
+    
+.. code-block:: bash
+
+   sudo apt-get install libffi-dev
+
+Reminds me one reason I like Arch linux:
+   
+   is the dev packages are partof the library too.  They are tiny and
+   so including the headers saves a lot of hassle it little cost.
 
 Deployment
 ----------
