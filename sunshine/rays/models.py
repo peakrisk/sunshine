@@ -41,7 +41,7 @@ class Observation(SurrogatePK, Model, CRUDMixin):
 
     __tablename__ = 'observations'
 
-    station_id = db.Column(db.Integer, db.ForeignKey('station.id'))
+    station_id = db.Column(db.Integer, db.ForeignKey('stations.id'))
     station = db.relationship('Station',
     backref=db.backref('observations', lazy='dynamic'))
 
