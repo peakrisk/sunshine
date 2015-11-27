@@ -1,11 +1,10 @@
 # -*- coding: utf-8 -*-
 """User models."""
-import datetime as dt
+from sunshine.database import (
+    Column, CRUDMixin, Model, SurrogatePK, db, relationship)
 
-from sunshine.database import Column, Model, SurrogatePK, db, reference_col, relationship
 
-
-class Station(SurrogatePK, Model):
+class Station(SurrogatePK, Model, CRUDMixin):
     """A weather station.
 
     name: name of the station
@@ -15,9 +14,9 @@ class Station(SurrogatePK, Model):
 
     __tablename__ = 'stations'
     name = Column(db.String(80), unique=True, nullable=False)
-    lat = Column(db.Float())
-    lon = Column(db.Float())
-    altitude = Column(db.Float())
+    lat = Column(db.Float)
+    lon = Column(db.Float)
+    altitude = Column(db.Float)
 
     def __init__(self, name, **kwargs):
         """Create instance."""
@@ -27,7 +26,7 @@ class Station(SurrogatePK, Model):
         """Represent instance as a unique string."""
         return '<Station({name})>'.format(name=self.name)
 
-class Observation(SurrogatePK, Model):
+class Observation(SurrogatePK, Model, CRUDMixin):
     """ A weather observation.
 
     station: id
@@ -42,10 +41,13 @@ class Observation(SurrogatePK, Model):
 
     __tablename__ = 'observations'
 
-    time = Column(db.DateTime(), nullable=False)
-    temperature = Column(db.Float(), nullable=True)
-    pressure = Column(db.Float(), nullable=True)
-    humidity = Column(db.Float(), nullable=True)
-    windspeed = Column(db.Float(), nullable=True)
-    winddirection = Column(db.Float(), nullable=True)
+    station_id = db.Column(db.Integer, db.ForeignKey('station.id'))
+    station = db.relationship('Station',
+    backref=db.backref('observations', lazy='dynamic'))
 
+    time = Column(db.DateTime, nullable=False)
+    temperature = Column(db.Float, nullable=True)
+    pressure = Column(db.Float, nullable=True)
+    humidity = Column(db.Float, nullable=True)
+    windspeed = Column(db.Float, nullable=True)
+    winddirection = Column(db.Float, nullable=True)

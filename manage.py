@@ -11,6 +11,7 @@ from flask_script.commands import Clean, ShowUrls
 
 from sunshine.app import create_app
 from sunshine.database import db
+from sunshine.rays.models import Observation, Station
 from sunshine.settings import DevConfig, ProdConfig
 from sunshine.user.models import User
 
@@ -24,7 +25,8 @@ manager = Manager(app)
 
 def _make_context():
     """Return context dict for a shell session so you can access app, db, and the User model by default."""
-    return {'app': app, 'db': db, 'User': User}
+    return {'app': app, 'db': db, 'User': User,
+            'station': Station, 'observation': Observation}
 
 
 @manager.command

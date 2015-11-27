@@ -2,7 +2,7 @@
 """The app module, containing the app factory function."""
 from flask import Flask, render_template
 
-from sunshine import public, user
+from sunshine import public, rays, user
 from sunshine.assets import assets
 from sunshine.extensions import bcrypt, cache, db, debug_toolbar, login_manager, migrate
 from sunshine.settings import ProdConfig
@@ -37,6 +37,7 @@ def register_blueprints(app):
     """Register Flask blueprints."""
     app.register_blueprint(public.views.blueprint)
     app.register_blueprint(user.views.blueprint)
+    app.register_blueprint(rays.views.blueprint)
     return None
 
 
