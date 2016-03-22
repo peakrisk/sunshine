@@ -38,6 +38,7 @@ def register_blueprints(app):
     app.register_blueprint(public.views.blueprint)
     app.register_blueprint(user.views.blueprint)
     app.register_blueprint(rays.views.blueprint)
+    app.register_blueprint(rays.api.blueprint)
     return None
 
 
