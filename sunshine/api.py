@@ -11,8 +11,8 @@ api = Api(blueprint)
 
 class Weather(Resource):
 
-    def get(self):
+    def get(self, lat, lon):
 
-        return dict(temp==72.0, pressure=1014.0)
+        return dict(temp=72.0, pressure=1014.0)
 
-api.add_resource(Weather, "/weather")
+api.add_resource(Weather, "/weather/<float:lat>/<float:lon>")
