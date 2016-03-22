@@ -17,7 +17,7 @@ api = Api(blueprint)
 class Weather(Resource):
     
 
-    def get(self, lat, lon):
+    def get(self, lat=32.0, lon=64.0):
 
         creds = credentials()
         
@@ -41,8 +41,11 @@ class Weather(Resource):
 class Tester(Resource):
     
 
-    def get(self):
+    def get(self, choice):
 
+        if choice == 1:
+            return dict(z=20, w=90)
+        
         return dict(a=1, b=1)
 
     
@@ -54,6 +57,6 @@ def credentials():
     return creds
         
 api.add_resource(Weather, "/weather/<float:lat>/<float:lon>")
-api.add_resource(Tester, "/tester")
+api.add_resource(Tester, "/tester/<int:choice>")
 
 
