@@ -1,8 +1,8 @@
 import sys
-sys.path.append("/home/ec2-user/jng/sunshine")
+sys.path.append('/var/www/sunshine')
 
 # Activate the virtual environment
-activate_this = '/home/ec2-user/.virtualenvs/sunshine/bin/activate_this.py'
+activate_this = '/var/www/sunshine/venv/bin/activate_this.py'
 
 with open(activate_this) as infile:
     exec(infile.read())
