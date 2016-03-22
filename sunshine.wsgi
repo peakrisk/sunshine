@@ -1,5 +1,10 @@
 import sys
-sys.path.append('/var/www/sunshine')
+import os
+
+path = '/var/www/sunshine'
+sys.path.append(path)
+
+os.chdir(path)
 
 # Now cross fingers and import
 from sunshine import app
