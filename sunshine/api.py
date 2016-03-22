@@ -38,7 +38,14 @@ class Weather(Resource):
         
         return record
 
+class Tester(Resource):
+    
 
+    def get(self, lat, lon):
+
+        return dict(a=1, b=1)
+
+    
 def credentials():
 
     with open(ProdConfig.CREDENTIALS) as infile:
@@ -47,5 +54,6 @@ def credentials():
     return creds
         
 api.add_resource(Weather, "/weather/<float:lat>/<float:lon>")
+api.add_resource(Tester, "/tester")
 
 
