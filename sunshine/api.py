@@ -41,7 +41,7 @@ class Weather(Resource):
 class Tester(Resource):
     
 
-    def get(self, lat, lon):
+    def get(self):
 
         return dict(a=1, b=1)
 
