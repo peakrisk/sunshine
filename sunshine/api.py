@@ -17,26 +17,34 @@ api = Api(blueprint)
 class Weather(Resource):
     
 
-    def get(self, lat=32.0, lon=64.0):
+    def get(self, field, lat=72.0, lon=36.0):
 
-        creds = credentials()
+        try:
+            creds = credentials()
+        except:
+            return dict(cred='failed')
         
         connection = pymysql.connect(user=creds['user'], password=creds['password'],
                                      database=ProdConfig.WEATHER_DB)
 
         cursor = connection.cursor()
 
-        cursor.execute("SELECT * from maxtemp where lat=%f and lon=%f and year=2015")
+
+        sql = "SELECT * from %s where lat=%f and lon=%f"
+
+        sql = sql % (field, lat, lon)
+
+        cursor.execute(sql)
 
         result = cursor.fetchall()
 
-        names = [x[0] for x in c.description]
+        names = [x[0] for x in cursor.description]
         data = []
         for row in result:
             record = dict(zip(names, row))
             data.append(record)
         
-        return record
+        return data
 
 class Tester(Resource):
     
@@ -56,7 +64,7 @@ def credentials():
 
     return creds
         
-api.add_resource(Weather, "/weather/<float:lat>/<float:lon>")
+api.add_resource(Weather, "/weather/<field>/<float:lat>/<float:lon>")
 api.add_resource(Tester, "/tester/<int:choice>")
 
 
