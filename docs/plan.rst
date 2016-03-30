@@ -51,3 +51,12 @@ to find the *sunshine* repository.
 I'm also going to add an interpret function to the flask thing, that
 will take data and return what it is able to extract from it.  I figure
 this will be handy debugging new readings() scripts.
+
+
+Making a swagger documented REST api
+====================================
+
+http://flask-restplus.readthedocs.org/en/latest/
+
+Working with karma pi
+=====================
